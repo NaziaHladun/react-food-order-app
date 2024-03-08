@@ -56,7 +56,7 @@ export default function Checkout() {
       })
     );
   };
-
+  const a = {};
   let actions = (
     <>
       <Button type="button" onClick={handleClose} textOnly>
