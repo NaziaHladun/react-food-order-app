@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { currencyFormatter } from "../util/formatting";
 import UserProgressContext from "../store/UserProgressContext";
 import CartContext from "../store/CartContext";
@@ -22,6 +22,10 @@ export default function Cart() {
   const handleShowCheckout = () => {
     userProgressCtx.showCheckout();
   };
+
+  useEffect(() => {
+    console.log("Azaza userProgressCtx", userProgressCtx);
+  }, [userProgressCtx]);
 
   return (
     <Modal
