@@ -55,61 +55,58 @@ export default function Checkout() {
         },
       })
     );
-
-    let actions = (
-      <>
-        <Button type="button" onClick={handleClose} textOnly>
-          Close
-        </Button>
-        <Button>Submit Order</Button>
-      </>
-    );
-
-    if (isSending) {
-      actions = <pan>Sending Order Data...</pan>;
-    }
-
-    if (data && !error) {
-      return (
-        <h1>Azaza 2</h1>
-        // <Modal
-        //   open={userProgressCtx.progress === "checkout"}
-        //   onClose={handleFinish}
-        // >
-        //   <h2>Success!</h2>
-        //   <p>Your order war submitted!</p>
-        //   <p>Check your Email.</p>
-        //   <p className="modal-actions">
-        //     <Button onClick={handleFinish}>Okay</Button>
-        //   </p>
-        // </Modal>
-      );
-    }
-
-    // open={userProgressCtx.progress === "checkout"}
-    return (
-      <h1>Azaza 1</h1>
-      // <Modal
-      //   open={true}
-      //   onClose={userProgressCtx.progress === "checkout" ? handleClose : null}
-      // >
-      //   <form onSubmit={handleSubmit}>
-      //     <h2>Checkout</h2>
-      //     <p>Total Amount: {currencyFormatter.format(cartTotal)}</p>
-
-      //     <Input label="Full Name" type="tex" id="name" />
-      //     <Input label="Email Address" type="email" id="email" />
-      //     <Input label="Street" type="tex" id="street" />
-      //     <div className="control-row">
-      //       <Input label="Postal Code" type="tex" id="postal-code" />
-      //       <Input label="City" type="tex" id="city" />
-      //     </div>
-
-      //     {error && <Error title="Failed to submit order" message={error} />}
-
-      //     <p className="modal-actions">{actions}</p>
-      //   </form>
-      // </Modal>
-    );
   };
+
+  let actions = (
+    <>
+      <Button type="button" onClick={handleClose} textOnly>
+        Close
+      </Button>
+      <Button>Submit Order</Button>
+    </>
+  );
+
+  if (isSending) {
+    actions = <pan>Sending Order Data...</pan>;
+  }
+
+  if (data && !error) {
+    return (
+      <Modal
+        open={userProgressCtx.progress === "checkout"}
+        onClose={handleFinish}
+      >
+        <h2>Success!</h2>
+        <p>Your order war submitted!</p>
+        <p>Check your Email.</p>
+        <p className="modal-actions">
+          <Button onClick={handleFinish}>Okay</Button>
+        </p>
+      </Modal>
+    );
+  }
+
+  return (
+    <Modal
+      open={userProgressCtx.progress === "checkout"}
+      onClose={userProgressCtx.progress === "checkout" ? handleClose : null}
+    >
+      <form onSubmit={handleSubmit}>
+        <h2>Checkout</h2>
+        <p>Total Amount: {currencyFormatter.format(cartTotal)}</p>
+
+        <Input label="Full Name" type="tex" id="name" />
+        <Input label="Email Address" type="email" id="email" />
+        <Input label="Street" type="tex" id="street" />
+        <div className="control-row">
+          <Input label="Postal Code" type="tex" id="postal-code" />
+          <Input label="City" type="tex" id="city" />
+        </div>
+
+        {error && <Error title="Failed to submit order" message={error} />}
+
+        <p className="modal-actions">{actions}</p>
+      </form>
+    </Modal>
+  );
 }
